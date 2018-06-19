@@ -8,7 +8,6 @@
 ## dev
 
 ````
-go get -u all
 
 ````
 
