@@ -8,7 +8,7 @@
 ## dev
 
 ````
-
+go install
 ````
 
 ## dep
