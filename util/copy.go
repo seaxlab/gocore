@@ -3,8 +3,8 @@ package util
 import (
 	"bytes"
 	"encoding/gob"
-	"github.com/jinzhu/copier"
 	"encoding/json"
+	"github.com/jinzhu/copier"
 )
 
 // spy 2018/6/27

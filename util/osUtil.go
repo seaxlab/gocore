@@ -1,14 +1,14 @@
 package util
 
 import (
-	"os/exec"
-	"os"
-	"path/filepath"
-	"os/user"
 	"bytes"
-	"strings"
-	"runtime"
 	"errors"
+	"os"
+	"os/exec"
+	"os/user"
+	"path/filepath"
+	"runtime"
+	"strings"
 )
 
 // IsWindows determines whether current OS is Windows.

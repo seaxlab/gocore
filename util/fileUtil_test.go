@@ -1,13 +1,13 @@
 package util
 
 import (
-	"testing"
 	"path/filepath"
+	"testing"
 )
 
 func TestFileSize(t *testing.T) {
 
-	userHome, err := UserHome();
+	userHome, err := UserHome()
 	if err != nil {
 		logger.Error("fail to get user home")
 		return

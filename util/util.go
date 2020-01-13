@@ -1,8 +1,8 @@
 package util
 
 import (
+	"../log"
 	"os"
-	"gitlab.cheguo-inc.com/go-core/log"
 )
 
 // Logger

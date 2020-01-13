@@ -1,10 +1,10 @@
 package util
 
 import (
-	"os"
-	"strings"
 	"io"
+	"os"
 	"path/filepath"
+	"strings"
 )
 
 type myfile struct{}
@@ -139,4 +139,3 @@ func (*myfile) CopyDir(source string, dest string) (err error) {
 
 	return nil
 }
-
