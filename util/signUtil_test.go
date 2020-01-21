@@ -18,6 +18,5 @@ func TestSignUtil(t *testing.T) {
 	params["timestamp"] = time.Now().Format("2006-01-02 15:04:05")
 
 	appSecret := "abcexvsh12"
-
-	logger.Info("file size ", GetSign(appSecret, params))
+	logger.Info("sign is", GetSign(appSecret, params))
 }

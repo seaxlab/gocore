@@ -12,7 +12,7 @@ func TestFileSize(t *testing.T) {
 		logger.Error("fail to get user home")
 		return
 	}
-	fileSize := File.GetFileSize(filepath.Join(userHome, ".bash_history"))
+	fileSize := GetFileSize(filepath.Join(userHome, ".bash_history"))
 
 	logger.Info("file size ", fileSize)
 }

@@ -2,18 +2,37 @@ package util
 
 import (
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
-type myfile struct{}
+// get file real path
+func RealPath(f string) string {
+	p, err := filepath.Abs(f)
+	if err != nil {
+		log.Panicln("Get absolute path error.")
+	}
+	p = strings.Replace(p, "\\", "/", -1)
+	l := strings.LastIndex(p, "/") + 1
+	return Substr(p, 0, l)
+}
 
-// File utilities.
-var File = myfile{}
+// check path is exist
+func IsExists(path string) bool {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true
+	}
+	if os.IsNotExist(err) {
+		return false
+	}
+	return false
+}
 
 // GetFileSize get the length in bytes of file of the specified path.
-func (*myfile) GetFileSize(path string) int64 {
+func GetFileSize(path string) int64 {
 	fi, err := os.Stat(path)
 	if nil != err {
 		logger.Error(err)
@@ -25,14 +44,14 @@ func (*myfile) GetFileSize(path string) int64 {
 }
 
 // IsExist determines whether the file spcified by the given path is exists.
-func (*myfile) IsExist(path string) bool {
+func IsExist(path string) bool {
 	_, err := os.Stat(path)
 
 	return err == nil || os.IsExist(err)
 }
 
 // IsBinary determines whether the specified content is a binary file content.
-func (*myfile) IsBinary(content string) bool {
+func IsBinary(content string) bool {
 	for _, b := range content {
 		if 0 == b {
 			return true
@@ -42,20 +61,20 @@ func (*myfile) IsBinary(content string) bool {
 	return false
 }
 
-// IsImg determines whether the specified extension is a image.
-func (*myfile) IsImg(extension string) bool {
-	ext := strings.ToLower(extension)
-
-	switch ext {
-	case ".jpg", ".jpeg", ".bmp", ".gif", ".png", ".svg", ".ico":
-		return true
-	default:
+// check path is file.
+func IsFile(path string) bool {
+	b, err := os.Stat(path)
+	if err != nil {
 		return false
 	}
+	if b.IsDir() {
+		return false
+	}
+	return true
 }
 
 // IsDir determines whether the specified path is a directory.
-func (*myfile) IsDir(path string) bool {
+func IsDir(path string) bool {
 	fio, err := os.Lstat(path)
 	if nil != err {
 		logger.Warnf("Determines whether [%s] is a directory failed: [%v]", path, err)
@@ -66,8 +85,20 @@ func (*myfile) IsDir(path string) bool {
 	return fio.IsDir()
 }
 
+// IsImg determines whether the specified extension is a image.
+func IsImg(extension string) bool {
+	ext := strings.ToLower(extension)
+
+	switch ext {
+	case ".jpg", ".jpeg", ".bmp", ".gif", ".png", ".svg", ".ico":
+		return true
+	default:
+		return false
+	}
+}
+
 // CopyFile copies the source file to the dest file.
-func (*myfile) CopyFile(source string, dest string) (err error) {
+func CopyFile(source string, dest string) (err error) {
 	sourcefile, err := os.Open(source)
 	if err != nil {
 		return err
@@ -95,7 +126,7 @@ func (*myfile) CopyFile(source string, dest string) (err error) {
 }
 
 // CopyDir copies the source directory to the dest directory.
-func (*myfile) CopyDir(source string, dest string) (err error) {
+func CopyDir(source string, dest string) (err error) {
 	sourceinfo, err := os.Stat(source)
 	if err != nil {
 		return err
@@ -125,12 +156,12 @@ func (*myfile) CopyDir(source string, dest string) (err error) {
 
 		if obj.IsDir() {
 			// create sub-directories - recursively
-			err = File.CopyDir(srcFilePath, destFilePath)
+			err = CopyDir(srcFilePath, destFilePath)
 			if err != nil {
 				logger.Error(err)
 			}
 		} else {
-			err = File.CopyFile(srcFilePath, destFilePath)
+			err = CopyFile(srcFilePath, destFilePath)
 			if err != nil {
 				logger.Error(err)
 			}

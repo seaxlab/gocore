@@ -21,14 +21,14 @@ func GetSign(clientSecret string, p map[string]interface{}) string {
 	sort.Strings(keys)
 	signStr := clientSecret
 	for _, key := range keys {
-		signStr += key + GetString(p[key])
+		signStr += key + getString(p[key])
 	}
 	signStr += clientSecret
 	// log.Println(signStr, "=", md5Hash(signStr))
 	return md5Hash(signStr)
 }
 
-func GetString(i interface{}) string {
+func getString(i interface{}) string {
 	switch v := i.(type) {
 	case string:
 		return v
