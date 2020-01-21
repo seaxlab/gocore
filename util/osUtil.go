@@ -11,6 +11,15 @@ import (
 	"strings"
 )
 
+// get hostname
+func GetHostname() string {
+	name, err := os.Hostname()
+	if err != nil {
+		panic(err)
+	}
+	return name
+}
+
 // IsWindows determines whether current OS is Windows.
 func IsWindows() bool {
 	return "windows" == runtime.GOOS

@@ -1,6 +1,8 @@
 package util
 
-import "strconv"
+import (
+	"strconv"
+)
 
 // spy 2020/1/21
 
@@ -75,13 +77,14 @@ func Contains(mapData map[string]string, key string) bool {
 	return present
 }
 
+//val := reflect.Indirect(reflect.ValueOf(v))
 //func DeleteMapItem(srcMap interface{}, args ...string) {
 //	checkIsMap(srcMap)
 //
-//	//ma := srcMap.(Type(srcMap))
-//	//for _, v := range args {
-//	//	delete(srcMap, v)
-//	//}
+//	ma := srcMap.(map[string]interface{})
+//	for _, v := range args {
+//		delete(ma, v)
+//	}
 //}
 
 func checkIsMap(srcMap interface{}) {

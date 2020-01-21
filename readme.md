@@ -11,8 +11,7 @@
 go install
 ````
 
-## dep
+## dependency
 
-````
-
-````
+- github.com/stretchr/testify/assert
+- github.com/jinzhu/copier

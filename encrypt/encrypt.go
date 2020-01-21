@@ -8,6 +8,8 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	"hash"
+	"hash/fnv"
 )
 
 // spy 2020/1/21
@@ -61,4 +63,43 @@ func Base64Decode(s string) (string, error) {
 		return "nil", err
 	}
 	return string(result), nil
+}
+
+// FNV32 hashes using fnv32 algorithm
+func FNV32(text string) uint32 {
+	algorithm := fnv.New32()
+	return uint32Hasher(algorithm, text)
+}
+
+// FNV32a hashes using fnv32a algorithm
+func FNV32a(text string) uint32 {
+	algorithm := fnv.New32a()
+	return uint32Hasher(algorithm, text)
+}
+
+// FNV64 hashes using fnv64 algorithm
+func FNV64(text string) uint64 {
+	algorithm := fnv.New64()
+	return uint64Hasher(algorithm, text)
+}
+
+// FNV64a hashes using fnv64a algorithm
+func FNV64a(text string) uint64 {
+	algorithm := fnv.New64a()
+	return uint64Hasher(algorithm, text)
+}
+
+func stringHasher(algorithm hash.Hash, text string) string {
+	algorithm.Write([]byte(text))
+	return hex.EncodeToString(algorithm.Sum(nil))
+}
+
+func uint32Hasher(algorithm hash.Hash32, text string) uint32 {
+	algorithm.Write([]byte(text))
+	return algorithm.Sum32()
+}
+
+func uint64Hasher(algorithm hash.Hash64, text string) uint64 {
+	algorithm.Write([]byte(text))
+	return algorithm.Sum64()
 }

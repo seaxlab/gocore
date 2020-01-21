@@ -9,6 +9,44 @@ import (
 
 var newlineBytes = []byte{'\n'}
 
+// IsEmpty returns true if the string is empty
+func IsEmpty(text string) bool {
+	return len(text) == 0
+}
+
+// IsNotEmpty returns true if the string is not empty
+func IsNotEmpty(text string) bool {
+	return !IsEmpty(text)
+}
+
+// IsBlank returns true if the string is blank (all whitespace)
+func IsBlank(text string) bool {
+	return len(strings.TrimSpace(text)) == 0
+}
+
+// IsNotBlank returns true if the string is not blank
+func IsNotBlank(text string) bool {
+	return !IsBlank(text)
+}
+
+func Contians(s, substr string) bool {
+	return strings.Contains(s, substr)
+}
+
+func StartsWith(s, substr string) bool {
+	if substr != "" && Substr(s, 0, len([]rune(substr))) == substr {
+		return true
+	}
+	return false
+}
+
+func EndsWith(s, substr string) bool {
+	if Substr(s, -len([]rune(substr)), len(s)) == substr {
+		return true
+	}
+	return false
+}
+
 // 去掉 src 开头和结尾的空白, 如果 src 包括换行, 去掉换行和这个换行符两边的空白
 //  NOTE: 根据 '\n' 来分行的, 某些系统或软件用 '\r' 来分行, 则不能正常工作.
 func TrimSpace(src []byte) []byte {
