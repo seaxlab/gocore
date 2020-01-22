@@ -11,5 +11,5 @@ import (
 var logger = log.NewLogger(os.Stdout)
 
 func TestFormat(t *testing.T) {
-	logger.Info(Format("2006-01-01"))
+	logger.Info(FormatTime("2006-01-01"))
 }

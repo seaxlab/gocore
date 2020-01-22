@@ -12,7 +12,7 @@ import (
 )
 
 // timestamp
-func Format(format ...string) string {
+func FormatTime(format ...string) string {
 	defaultFormat := "2006-01-02 15:04:05"
 	if len(format) > 0 {
 		defaultFormat = format[0]
