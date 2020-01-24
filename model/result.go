@@ -18,6 +18,13 @@ func NewResult() *Result {
 	}
 }
 
+func NewFail() *Result {
+	return &Result{
+		Success: false,
+		Data:    nil,
+	}
+}
+
 func NewFailResult(errorCode, errorMsg string) *Result {
 	return &Result{
 		Success:   false,
@@ -26,3 +33,5 @@ func NewFailResult(errorCode, errorMsg string) *Result {
 		Data:      nil,
 	}
 }
+
+
