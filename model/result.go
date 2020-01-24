@@ -4,11 +4,11 @@ package model
 
 /** 对外返回基类 */
 type Result struct {
-	Success    bool        "json:success"
-	ErrorCode  string      "json:errorCode"
-	ErrorMsg   string      "json:errorMsg"
-	ErrorField string      "json:errorField"
-	Data       interface{} "json:data"
+	Success    bool        `json:"success"`
+	ErrorCode  string      `json:"errorCode"`
+	ErrorMsg   string      `json:"errorMsg"`
+	ErrorField string      `json:"errorField"`
+	Data       interface{} `json:"data"`
 }
 
 func NewResult() *Result {
