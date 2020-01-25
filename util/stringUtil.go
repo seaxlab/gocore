@@ -68,7 +68,7 @@ func TrimSpaceString(src string) string {
 }
 
 // string to []bytes
-func toBytes(src string) []byte {
+func ToBytes(src string) []byte {
 	return []byte(src)
 }
 
