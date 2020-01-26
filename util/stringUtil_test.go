@@ -2,6 +2,7 @@ package util
 
 import (
 	"bytes"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -20,4 +21,9 @@ func TestTrimSpace(t *testing.T) {
 	if dst := TrimSpace([]byte(src)); !bytes.Equal(dst, expectBytes) {
 		t.Errorf("TrimSpace(%q):\nhave %q\nwant %q\n", src, dst, expectBytes)
 	}
+}
+
+func TestJoin(t *testing.T) {
+	assert.Equal(t, JoinDefault("a", "b", "c"), "a:b:c")
+	assert.Equal(t, Join("-", "a", "b", "c"), "a-b-c")
 }

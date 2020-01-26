@@ -112,3 +112,24 @@ func Substr(s string, start int, strlength ...int) string {
 
 	return string(charlist[start:end])
 }
+
+// 默认通过“:”组装
+func JoinDefault(args ...string) string {
+	return Join(":", args...)
+}
+
+//通过split组装
+func Join(split string, args ...string) string {
+	if len(args) == 0 {
+		panic("args参数不能为空")
+	}
+
+	var buffer bytes.Buffer
+	for i, v := range args {
+		if i != 0 {
+			buffer.WriteString(split)
+		}
+		buffer.WriteString(v)
+	}
+	return buffer.String()
+}
