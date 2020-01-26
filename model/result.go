@@ -5,10 +5,10 @@ package model
 /** 对外返回基类 */
 type Result struct {
 	Success    bool        `json:"success"`
-	ErrorCode  string      `json:"errorCode"`
-	ErrorMsg   string      `json:"errorMsg"`
-	ErrorField string      `json:"errorField"`
-	Data       interface{} `json:"data"`
+	ErrorCode  string      `json:"errorCode,omitempty"`
+	ErrorMsg   string      `json:"errorMsg,omitempty"`
+	ErrorField string      `json:"errorField,omitempty"`
+	Data       interface{} `json:"data,omitempty"`
 }
 
 func NewResult() *Result {
@@ -33,5 +33,3 @@ func NewFailResult(errorCode, errorMsg string) *Result {
 		Data:      nil,
 	}
 }
-
-
