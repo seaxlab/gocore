@@ -14,3 +14,12 @@ func TestToStrArray(t *testing.T) {
 
 	fmt.Println(at["atMobiles"])
 }
+
+func TestAppend(t *testing.T) {
+	myStringSlice := []string{"first", "second", "third"}
+
+	myStringSlice = append(myStringSlice, []string{"fourth", "fift"}...)
+	myStringSlice = append(myStringSlice, "sixth", "seventh")
+
+	fmt.Println(myStringSlice)
+}
