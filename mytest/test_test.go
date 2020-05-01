@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"regexp"
+	"strings"
 	"testing"
 	"time"
 )
@@ -11,11 +12,11 @@ import (
 // spy 2020/4/11
 
 func TestName(t *testing.T) {
-	str := "12cc=1,app=user-22,acb"
-
+	//str := "12cc=1,acb,app=user-22 s"
+	str := "app=virtualsettlement,instance=172.17.8.102,service=autoReconciliationJob"
 	//reg:= regexp.MustCompile("(app)=([0-9a-zA-Z\\-]+)")
 
-	reg := regexp.MustCompile("(app)=([^,]*)")
+	reg := regexp.MustCompile("(app)=([^,\n\r ]*)")
 	one := reg.FindAllStringSubmatch(str, -1)
 
 	fmt.Println(one) //[[app=user-22 app user-22]]
@@ -24,6 +25,7 @@ func TestName(t *testing.T) {
 		return
 	}
 	if len(one[0]) == 3 {
+		fmt.Println("--")
 		fmt.Println(one[0][2])
 	}
 
@@ -43,4 +45,20 @@ func TestDate(t *testing.T) {
 
 	fmt.Println(today)
 	fmt.Println(yesterday)
+}
+
+func TestName2(t *testing.T) {
+	//content:="instance=172.17.8.103,method=batchRegisterEhcV2,service=com.yuantu.cardcore.dubbo.service.WechatEHCDubboService,app=card-core"
+
+}
+
+func TestName3(t *testing.T) {
+	fmt.Println(strings.Contains("db.sql.cost", "db."))
+}
+func TestName4(t *testing.T) {
+	at := make(map[string]interface{})
+	at["atMobiles"] = []string{"123", "123"}
+	at["atMobiles"] = append(at["atMobiles"].([]string), []string{"333"}...)
+
+	fmt.Println(at["atMobiles"])
 }
