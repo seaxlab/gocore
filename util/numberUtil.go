@@ -1,0 +1,54 @@
+package util
+
+import "strconv"
+
+// spy 2020/5/20
+
+//int到string
+func IntToStr(value int) string {
+	return strconv.Itoa(value)
+}
+
+//int64到string
+func Int64ToStr(value int64) string {
+	return strconv.FormatInt(value, 10)
+}
+
+// float32 to str
+func Float32ToStr(value float64) string {
+	return strconv.FormatFloat(value, 'E', -1, 32)
+}
+
+// float64 to str
+func Float64ToStr(value float64) string {
+	return strconv.FormatFloat(value, 'E', -1, 64)
+}
+
+// string to int
+func strToInt(value string) (int, error) {
+	return strconv.Atoi(value)
+}
+
+// string to int64
+func strToInt64(value string) (int64, error) {
+	return strconv.ParseInt(value, 10, 64)
+}
+
+// str to float32
+func strToFloat(value string) (float64, error) {
+	return strconv.ParseFloat(value, 32)
+}
+
+// str to float 64
+func strToFloat64(value string) (float64, error) {
+	return strconv.ParseFloat(value, 64)
+}
+
+//string := strconv.FormatFloat(float32, 'E', -1, 32)
+//string := strconv.FormatFloat(float64, 'E', -1, 64)
+// 'b' (-ddddp±ddd，二进制指数)
+// 'e' (-d.dddde±dd，十进制指数)
+// 'E' (-d.ddddE±dd，十进制指数)
+// 'f' (-ddd.dddd，没有指数)
+// 'g' ('e':大指数，'f':其它情况)
+// 'G' ('E':大指数，'f':其它情况)
