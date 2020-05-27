@@ -13,10 +13,11 @@ import (
 
 func TestName(t *testing.T) {
 	//str := "12cc=1,acb,app=user-22 s"
-	str := "app=virtualsettlement,instance=172.17.8.102,service=autoReconciliationJob"
+	str := "tags：protocol=http,region=default,uri=/user-web/restapi/common/listTodayInquiryDoct,app=user,http_status=500,instance=10.122.2.124\n"
+	//str := "app=virtualsettlement,instance=172.17.8.102,service=autoReconciliationJob"
 	//reg:= regexp.MustCompile("(app)=([0-9a-zA-Z\\-]+)")
 
-	reg := regexp.MustCompile("(app)=([^,\n\r ]*)")
+	reg := regexp.MustCompile("(app)=([^,\n\t ]*)")
 	one := reg.FindAllStringSubmatch(str, -1)
 
 	fmt.Println(one) //[[app=user-22 app user-22]]
