@@ -3,7 +3,7 @@ package su
 import (
 	"bytes"
 	"fmt"
-	"gitee.com/shi.pengyan/go-core/sys/user"
+	"gitee.com/seaframework/go-core/sys/user"
 	"os/exec"
 	"syscall"
 )

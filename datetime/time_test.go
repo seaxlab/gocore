@@ -2,7 +2,7 @@ package datetime
 
 // spy 2020/1/21
 import (
-	"gitee.com/shi.pengyan/go-core/log"
+	"gitee.com/seaframework/go-core/log"
 	"os"
 	"testing"
 )

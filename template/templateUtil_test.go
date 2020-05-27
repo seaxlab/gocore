@@ -1,7 +1,7 @@
 package template
 
 import (
-	"gitee.com/shi.pengyan/go-core/log"
+	"gitee.com/seaframework/go-core/log"
 	"os"
 	"testing"
 )

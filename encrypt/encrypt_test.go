@@ -1,7 +1,7 @@
 package encrypt
 
 import (
-	"gitee.com/shi.pengyan/go-core/log"
+	"gitee.com/seaframework/go-core/log"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"

@@ -1,7 +1,7 @@
 package qrcode
 
 import (
-	"gitee.com/shi.pengyan/go-core/util"
+	"gitee.com/seaframework/go-core/util"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

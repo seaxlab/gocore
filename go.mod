@@ -1,4 +1,4 @@
-module gitee.com/shi.pengyan/go-core
+module gitee.com/seaframework/go-core
 
 go 1.13
 
