@@ -17,7 +17,7 @@ func Command(uid, command string, args ...string) (*exec.Cmd, error) {
 		return nil, err
 	}
 	cmd := exec.Command(command, args...)
-	cmd.SysProcAttr = &syscall.SysProcAttr{}
+	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 	cmd.SysProcAttr.Credential = ucred.Cred
 	return cmd, nil
 }
@@ -67,4 +67,15 @@ func CombinedOutput(uid, command string, args ...string) ([]byte, error) {
 			uid, cmd.Path, err, string(out))
 	}
 	return out, nil
+}
+
+//kill single cmd
+func KillSingle(pid int) (err error) {
+	return syscall.Kill(pid, syscall.SIGKILL)
+}
+
+// 向进程组发信号
+func KillGroup(pid int) (err error) {
+	//，传递进程组PGID的时候要使用负数的形式
+	return syscall.Kill(-pid, syscall.SIGKILL)
 }
