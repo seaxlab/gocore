@@ -1,4 +1,4 @@
-module github.com/seaxlab/go-core
+module github.com/seaxlab/gocore
 
 go 1.14
 
