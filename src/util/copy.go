@@ -23,8 +23,6 @@ func deepCopy1(dst interface{}, src interface{}) error {
 	var buf bytes.Buffer
 
 	if err := gob.NewEncoder(&buf).Encode(src); err != nil {
-		logger.Error("序列化出错")
-
 		return err
 	}
 

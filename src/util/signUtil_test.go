@@ -1,6 +1,8 @@
 package util
 
 import (
+	"fmt"
+	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
 )
@@ -18,5 +20,7 @@ func TestSignUtil(t *testing.T) {
 	params["timestamp"] = time.Now().Format("2006-01-02 15:04:05")
 
 	appSecret := "abcexvsh12"
-	logger.Info("sign is", GetSign(appSecret, params))
+	fmt.Printf("sign is %s", GetSign(appSecret, params))
+
+	assert.EqualValues(t, "C3A2A6CF1A875BEA3F4EEA10C36784BE", GetSign(appSecret, params))
 }

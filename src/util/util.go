@@ -1,9 +1,7 @@
-package test
-
-// spy 2020/1/21
+package util
 
 import (
-	"github.com/seaxlab/gocore/log"
+	"github.com/seaxlab/gocore/src/log"
 	"os"
 )
 

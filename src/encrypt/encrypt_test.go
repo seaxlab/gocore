@@ -1,7 +1,7 @@
 package encrypt
 
 import (
-	"github.com/seaxlab/gocore/log"
+	"github.com/seaxlab/gocore/src/log"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"

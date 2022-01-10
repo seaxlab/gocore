@@ -87,10 +87,10 @@ func Contains(mapData map[string]string, key string) bool {
 //	}
 //}
 
-func checkIsMap(srcMap interface{}) {
-	if isMap(srcMap) {
-
-	} else {
-		panic("only support for map.")
-	}
-}
+//func checkIsMap(srcMap interface{}) {
+//	if IsMap(srcMap) {
+//
+//	} else {
+//		panic("only support for map.")
+//	}
+//}

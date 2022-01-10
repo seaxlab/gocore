@@ -3,7 +3,7 @@ package su
 import (
 	"bytes"
 	"fmt"
-	"github.com/seaxlab/gocore/sys/user"
+	"github.com/seaxlab/gocore/src/sys/user"
 	"os/exec"
 	"syscall"
 )

@@ -14,7 +14,7 @@ import (
 
 // spy 2020/1/21
 
-// MD5
+// Md5 MD5 alg
 func Md5(s string) (result string) {
 	m := md5.New()
 	m.Write([]byte(s))
@@ -23,7 +23,7 @@ func Md5(s string) (result string) {
 	return
 }
 
-// SHA1
+// Sha1 SHA1 alg
 func Sha1(s string) (result string) {
 	sha := sha1.New()
 	sha.Write([]byte(s))
@@ -32,7 +32,7 @@ func Sha1(s string) (result string) {
 	return
 }
 
-// SHA256
+// Sha256 SHA256 alg
 func Sha256(s string) (result string) {
 	sha := sha256.New()
 	sha.Write([]byte(s))
@@ -41,7 +41,7 @@ func Sha256(s string) (result string) {
 	return
 }
 
-// SHA512
+// Sha512 SHA512 alg
 func Sha512(s string) (result string) {
 	sha := sha512.New()
 	sha.Write([]byte(s))
@@ -50,13 +50,13 @@ func Sha512(s string) (result string) {
 	return
 }
 
-// Base64Encode
+// Base64Encode Base64 Encode alg
 func Base64Encode(s string) (result string) {
 	result = base64.StdEncoding.EncodeToString([]byte(s))
 	return
 }
 
-// Base64Encode
+// Base64Decode Base64Encode alg
 func Base64Decode(s string) (string, error) {
 	result, err := base64.StdEncoding.DecodeString(s)
 	if err != nil {

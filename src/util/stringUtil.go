@@ -29,7 +29,7 @@ func IsNotBlank(text string) bool {
 	return !IsBlank(text)
 }
 
-func Contians(s, substr string) bool {
+func ContainsStr(s, substr string) bool {
 	return strings.Contains(s, substr)
 }
 

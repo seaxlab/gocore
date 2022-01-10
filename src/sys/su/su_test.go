@@ -1,7 +1,7 @@
 package su
 
 import (
-	"github.com/seaxlab/gocore/sys/user"
+	"github.com/seaxlab/gocore/src/sys/user"
 	"log"
 	"testing"
 )

@@ -28,7 +28,7 @@ func GetRemoteIP(r *http.Request) string {
 	return ip
 }
 
-// GetLocalIP returns the non loopback local IP of the host
+// GetLocalIP returns the non loop back local IP of the host
 func GetLocalIP() string {
 	addrs, err := net.InterfaceAddrs()
 	if err != nil {

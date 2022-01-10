@@ -11,7 +11,7 @@ func Type(arg interface{}) string {
 	return reflect.TypeOf(arg).String()
 }
 
-// Int
+// IsInt Int
 func IsInt(arg interface{}) bool {
 	switch arg.(type) {
 	case int:
@@ -21,7 +21,7 @@ func IsInt(arg interface{}) bool {
 	}
 }
 
-// Int64
+// IsInt64 Int64
 func IsInt64(arg interface{}) bool {
 	switch arg.(type) {
 	case int64:
@@ -31,24 +31,27 @@ func IsInt64(arg interface{}) bool {
 	}
 }
 
-// Float64
+// IsFloat Float64
 func IsFloat(arg interface{}) bool {
 	return Type(arg) == "float64"
 }
 
-// String
+// IsString String
 func IsString(arg interface{}) bool {
 	return Type(arg) == "string"
 }
 
+// IsTime check is time.Time
 func IsTime(arg interface{}) bool {
 	return Type(arg) == "time.Time"
 }
 
+// IsBool check is bool
 func IsBool(arg interface{}) bool {
 	return Type(arg) == "bool"
 }
 
+// IsTrue check is True
 func IsTrue(arg interface{}) bool {
 	var flag = false
 	switch Type(arg) {
@@ -62,14 +65,17 @@ func IsTrue(arg interface{}) bool {
 	return flag
 }
 
+// IsFalse check is false
 func IsFalse(arg interface{}) bool {
 	return !IsTrue(arg)
 }
 
+// IsSlice check is slice
 func IsSlice(arg interface{}) bool {
 	return reflect.TypeOf(arg).Kind().String() == "slice"
 }
 
-func isMap(arg interface{}) bool {
+// IsMap check is map
+func IsMap(arg interface{}) bool {
 	return reflect.TypeOf(arg).Kind().String() == "map"
 }
