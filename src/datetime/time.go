@@ -44,7 +44,7 @@ func Second(t ...time.Time) int {
 	return tmp.Second()
 }
 
-// String to timestamp
+// Timestamp String to timestamp
 func Timestamp(args ...string) int64 {
 	var timestamp int64 = 0
 	l := len(args)
