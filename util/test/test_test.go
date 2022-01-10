@@ -3,7 +3,7 @@ package test
 // spy 2020/1/21
 
 import (
-	"../../log"
+	"github.com/seaxlab/gocore/log"
 	"os"
 )
 

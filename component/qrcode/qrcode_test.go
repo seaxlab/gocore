@@ -11,7 +11,7 @@ import (
 func TestEncode(t *testing.T) {
 	userHome, _ := util.UserHome()
 
-	Encode("http://www.baidu.com", userHome+"/test/qr.png")
+	EncodeSimple("http://www.baidu.com", userHome+"/test/qr.png")
 }
 
 func TestDecode(t *testing.T) {

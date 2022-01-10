@@ -10,7 +10,7 @@ import (
 
 // spy 2020/1/27
 
-// 将内容编码成图片文件png
+// EncodeSimple 将内容编码成图片文件png
 func EncodeSimple(content, filePath string) {
 	qrCode, _ := qr.Encode(content, qr.M, qr.Auto)
 
@@ -22,7 +22,7 @@ func EncodeSimple(content, filePath string) {
 	png.Encode(file, qrCode)
 }
 
-//TODO 再扩展
+// Encode TODO 再扩展
 // 高级API
 func Encode(dto EncodeDTO) {
 	qrCode, _ := qr.Encode(dto.Content, qr.M, qr.Auto)
@@ -35,7 +35,7 @@ func Encode(dto EncodeDTO) {
 	png.Encode(file, qrCode)
 }
 
-//将二维码文件解码
+// Decode 将二维码文件解码
 func Decode(qrCodeFilePath string) (string, error) {
 	file, err := os.Open(qrCodeFilePath)
 	if err != nil {

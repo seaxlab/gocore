@@ -11,10 +11,7 @@ import (
 
 //实现结构之间的深拷贝
 
-/**
- * 深拷贝
- * 【注意】带有引用类型、和数组类型的无法拷贝
- */
+// DeepCopy 深拷贝,【注意】带有引用类型、和数组类型的无法拷贝
 func DeepCopy(dst interface{}, src interface{}) error {
 	return deepCopy1(dst, src)
 }

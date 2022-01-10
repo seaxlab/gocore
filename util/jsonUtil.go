@@ -4,7 +4,7 @@ import "encoding/json"
 
 // spy 2020/1/21
 
-// Returns a Json string
+// ToJsonString Returns a Json string
 func ToJsonString(v interface{}) string {
 	b, err := json.Marshal(v)
 	if err != nil {
@@ -13,6 +13,7 @@ func ToJsonString(v interface{}) string {
 	return string(b)
 }
 
+// DecodeJsonString decode string to interface{}
 func DecodeJsonString(s string) interface{} {
 	var i interface{}
 	err := json.Unmarshal([]byte(s), &i)

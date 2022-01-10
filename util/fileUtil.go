@@ -8,9 +8,9 @@ import (
 	"strings"
 )
 
-// get file real path
-func RealPath(f string) string {
-	p, err := filepath.Abs(f)
+// RealPath get file real path
+func RealPath(filePath string) string {
+	p, err := filepath.Abs(filePath)
 	if err != nil {
 		log.Panicln("Get absolute path error.")
 	}
@@ -19,7 +19,7 @@ func RealPath(f string) string {
 	return Substr(p, 0, l)
 }
 
-// check path is exist
+// IsExists check path is exist
 func IsExists(path string) bool {
 	_, err := os.Stat(path)
 	if err == nil {

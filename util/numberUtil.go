@@ -4,22 +4,22 @@ import "strconv"
 
 // spy 2020/5/20
 
-//int到string
+// IntToStr int到string
 func IntToStr(value int) string {
 	return strconv.Itoa(value)
 }
 
-//int64到string
+// Int64ToStr int64到string
 func Int64ToStr(value int64) string {
 	return strconv.FormatInt(value, 10)
 }
 
-// float32 to str
+// Float32ToStr float32 to str
 func Float32ToStr(value float64) string {
 	return strconv.FormatFloat(value, 'E', -1, 32)
 }
 
-// float64 to str
+// Float64ToStr float64 to str
 func Float64ToStr(value float64) string {
 	return strconv.FormatFloat(value, 'E', -1, 64)
 }

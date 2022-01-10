@@ -3,6 +3,7 @@ package util
 import "regexp"
 
 // spy 2020/4/15
+
 func GetMatchValue(content string, key string) string {
 	reg := regexp.MustCompile("(" + key + ")=([^,]*)")
 	one := reg.FindAllStringSubmatch(content, -1)
