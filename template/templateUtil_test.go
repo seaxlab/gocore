@@ -1,9 +1,11 @@
 package template
 
 import (
-	"gitee.com/seaframework/go-core/log"
+	"github.com/seaxlab/gocore/log"
 	"os"
+	"strings"
 	"testing"
+	"time"
 )
 
 // spy 2020/1/22
@@ -20,4 +22,17 @@ func TestTemplate(t *testing.T) {
 
 	content := Format(templateStr, varMap)
 	logger.Info(content)
+}
+
+func TestName(t *testing.T) {
+	now := time.Now().UTC()
+	begin := now.Add(-1 * time.Hour * time.Duration(1))
+	end := now.Add(time.Hour * time.Duration(1))
+	logger.Info(begin.Format("2006-01-02T15:04:05.000Z"))
+	logger.Info(end.Format("2006-01-02T15:04:05.000Z"))
+}
+
+func TestName2(t *testing.T) {
+	region := "qingdaopro"
+	logger.Info(strings.Contains(region, "qingdao"))
 }

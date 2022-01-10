@@ -3,7 +3,7 @@ package su
 import (
 	"bytes"
 	"fmt"
-	"gitee.com/seaframework/go-core/sys/user"
+	"github.com/seaxlab/gocore/sys/user"
 	"os/exec"
 	"syscall"
 )
@@ -17,7 +17,7 @@ func Command(uid, command string, args ...string) (*exec.Cmd, error) {
 		return nil, err
 	}
 	cmd := exec.Command(command, args...)
-	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
+	cmd.SysProcAttr = &syscall.SysProcAttr{}
 	cmd.SysProcAttr.Credential = ucred.Cred
 	return cmd, nil
 }
@@ -32,7 +32,7 @@ func Run(uid, command string, args ...string) error {
 	cmd.Stderr = &stderr
 	err = cmd.Run()
 	if err != nil {
-		return fmt.Errorf("command(su %d) %s: %v: %s",
+		return fmt.Errorf("command(su %s) %s: %v: %s",
 			uid, cmd.Path, err, stderr.String())
 	}
 	return nil
@@ -48,7 +48,7 @@ func Output(uid, command string, args ...string) ([]byte, error) {
 	cmd.Stderr = &stderr
 	out, err := cmd.Output()
 	if err != nil {
-		return nil, fmt.Errorf("command(su %d) %s: %v: %s (output: %s)",
+		return nil, fmt.Errorf("command(su %s) %s: %v: %s (output: %s)",
 			uid, cmd.Path, err, stderr.String(), string(out))
 	}
 	return out, nil
@@ -63,7 +63,7 @@ func CombinedOutput(uid, command string, args ...string) ([]byte, error) {
 	}
 	out, err := cmd.CombinedOutput()
 	if err != nil {
-		return nil, fmt.Errorf("command(su %d) %s: %v: %s",
+		return nil, fmt.Errorf("command(su %s) %s: %v: %s",
 			uid, cmd.Path, err, string(out))
 	}
 	return out, nil

@@ -1,7 +1,7 @@
 package qrcode
 
 import (
-	"gitee.com/seaframework/go-core/util"
+	"github.com/seaxlab/gocore/util"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

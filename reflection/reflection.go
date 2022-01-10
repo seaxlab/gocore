@@ -1,7 +1,7 @@
 package reflection
 
 import (
-	"gitee.com/seaframework/go-core/log"
+	"github.com/seaxlab/gocore/log"
 	"os"
 )
 
