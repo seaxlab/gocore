@@ -12,8 +12,9 @@ go install
 
 ## dependency
 
-- github.com/stretchr/testify/assert
-- github.com/jinzhu/copier
+`go mod graph` //可视化依赖
+
+- github.com/stretchr/testify/assert 测试断言库
 
 ## Notice
 
