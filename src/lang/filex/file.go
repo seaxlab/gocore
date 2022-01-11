@@ -4,6 +4,7 @@ import (
 	"fmt"
 	string2 "github.com/seaxlab/gocore/src/lang/stringx"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -129,21 +130,21 @@ func DeleteFile(path string) error {
 
 // CopyFile copies the source file to the dest file.
 func CopyFile(source string, dest string) (err error) {
-	sourcefile, err := os.Open(source)
+	sourceFile, err := os.Open(source)
 	if err != nil {
 		return err
 	}
 
-	defer sourcefile.Close()
+	defer sourceFile.Close()
 
-	destfile, err := os.Create(dest)
+	destFile, err := os.Create(dest)
 	if err != nil {
 		return err
 	}
 
-	defer destfile.Close()
+	defer destFile.Close()
 
-	_, err = io.Copy(destfile, sourcefile)
+	_, err = io.Copy(destFile, sourceFile)
 	if err == nil {
 		if sourceinfo, e := os.Stat(source); nil != e {
 			err = os.Chmod(dest, sourceinfo.Mode())
@@ -193,4 +194,10 @@ func CopyDir(source string, dest string) (err error) {
 	}
 
 	return nil
+}
+
+// GetContent read file content
+func GetContent(filePath string) (string, error) {
+	res, err := ioutil.ReadFile(filePath)
+	return string(res), err
 }
