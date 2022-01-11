@@ -19,3 +19,4 @@ go install
 
 - 禁止使用`json-iterator`，性能和原生差不多
 - 尽量使用返回err，`errors.New("xxx")`
+- 对原生语法扩展后缀以`x`结尾，例如`arrayx` `timex`

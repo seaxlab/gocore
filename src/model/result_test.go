@@ -3,7 +3,7 @@ package model
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/seaxlab/gocore/src/util"
+	"github.com/seaxlab/gocore/src/lang/jsonx"
 	"testing"
 )
 
@@ -11,5 +11,5 @@ import (
 func TestFailResult(t *testing.T) {
 	result := NewFailResult("1", "a")
 	fmt.Println(json.Marshal(result))
-	fmt.Println(util.ToJsonString(result))
+	fmt.Println(jsonx.ToJsonString(result))
 }

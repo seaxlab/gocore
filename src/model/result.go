@@ -2,7 +2,7 @@ package model
 
 // spy 2018-06-18
 
-/** 对外返回基类 */
+/** API返回值统一模型 */
 
 type Result struct {
 	Success bool        `json:"success"`
@@ -13,10 +13,17 @@ type Result struct {
 	Data    interface{} `json:"data,omitempty"`
 }
 
-func NewResult() *Result {
+func NewSuccess() *Result {
 	return &Result{
 		Success: true,
 		Data:    nil,
+	}
+}
+
+func NewSuccessResult(data interface{}) *Result {
+	return &Result{
+		Success: true,
+		Data:    data,
 	}
 }
 

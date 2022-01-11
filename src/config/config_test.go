@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"github.com/seaxlab/gocore/src/util"
+	"github.com/seaxlab/gocore/src/lang/osx"
 	"os"
 	"testing"
 )
@@ -13,7 +13,7 @@ func TestConfig(t *testing.T) {
 	path, _ := os.Getwd()
 	fmt.Println(path)
 
-	p, _ := util.GetWorkingDir()
+	p, _ := osx.GetWorkingDir()
 	fmt.Println(p)
 
 	filePaths := []string{
