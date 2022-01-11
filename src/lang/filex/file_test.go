@@ -34,3 +34,12 @@ func TestAppendStr(t *testing.T) {
 
 	AppendString(testFile, "append it \n")
 }
+
+func TestGetContent(t *testing.T) {
+	userHome, _ := osx.UserHome()
+	seaHome := filepath.Join(userHome, "sea", "test")
+	testFile := filepath.Join(seaHome, "file.txt")
+
+	content, _ := GetContent(testFile)
+	fmt.Println(content)
+}
