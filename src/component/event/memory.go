@@ -1,4 +1,4 @@
-package eventx
+package event
 
 // MemoryEventStore is a event store for sync operations
 type MemoryEventStore struct {

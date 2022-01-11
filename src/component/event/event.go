@@ -1,4 +1,4 @@
-package eventx
+package event
 
 // spy 2022/1/11
 import (
