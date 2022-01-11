@@ -8,18 +8,33 @@ import (
 	"testing"
 )
 
-func TestFileSize(t *testing.T) {
+var (
+	userHome    string
+	seaTestHome string
+)
 
-	userHome, _ := osx.UserHome()
+func init() {
+	path, _ := osx.UserHome()
+	userHome = path
+	seaTestHome = filepath.Join(userHome, "sea", "test")
+}
+
+func TestGetParentDir(t *testing.T) {
+	fmt.Println(GetParentDir(seaTestHome + "/file.txt"))
+}
+
+func TestGetFileName(t *testing.T) {
+	fmt.Println(GetFileName(seaTestHome + "/file.txt"))
+}
+
+func TestFileSize(t *testing.T) {
 	fileSize, _ := GetFileSize(filepath.Join(userHome, ".bash_history"))
 
 	log.Printf("file size %v", fileSize)
 }
 
 func TestWriterStr(t *testing.T) {
-	userHome, _ := osx.UserHome()
-	seaHome := filepath.Join(userHome, "sea", "test")
-	testFile := filepath.Join(seaHome, "file.txt")
+	testFile := filepath.Join(seaTestHome, "file.txt")
 
 	err := CreateFile(testFile)
 	fmt.Println(err)
@@ -28,17 +43,13 @@ func TestWriterStr(t *testing.T) {
 }
 
 func TestAppendStr(t *testing.T) {
-	userHome, _ := osx.UserHome()
-	seaHome := filepath.Join(userHome, "sea", "test")
-	testFile := filepath.Join(seaHome, "file.txt")
+	testFile := filepath.Join(seaTestHome, "file.txt")
 
 	AppendString(testFile, "append it \n")
 }
 
 func TestGetContent(t *testing.T) {
-	userHome, _ := osx.UserHome()
-	seaHome := filepath.Join(userHome, "sea", "test")
-	testFile := filepath.Join(seaHome, "file.txt")
+	testFile := filepath.Join(seaTestHome, "file.txt")
 
 	content, _ := GetContent(testFile)
 	fmt.Println(content)

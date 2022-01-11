@@ -11,6 +11,14 @@ import (
 	"strings"
 )
 
+func GetParentDir(path string) string {
+	return filepath.Dir(path)
+}
+
+func GetFileName(filePath string) string {
+	return filepath.Base(filePath)
+}
+
 // RealPath get file real path
 func RealPath(filePath string) string {
 	p, err := filepath.Abs(filePath)
