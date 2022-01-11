@@ -96,12 +96,45 @@ func IsImg(extension string) bool {
 	}
 }
 
+// EnsureDir 确保目录存在
+func EnsureDir(dirPath string) error {
+	if _, err := os.Stat(dirPath); os.IsNotExist(err) {
+		return os.MkdirAll(dirPath, 0744)
+	}
+	return nil
+}
+
+// EnsureFile 确保文件存在
+func EnsureFile(filePath string) error {
+	// create parent dir if not exist
+	dirPath := filepath.Dir(filePath)
+	if _, err := os.Stat(dirPath); os.IsNotExist(err) {
+		err2 := os.MkdirAll(dirPath, 0744)
+		if err2 != nil {
+			return err2
+		}
+	}
+
+	// create file if not exists
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		var file, err = os.Create(filePath)
+		if err != nil {
+			return err
+		}
+		defer file.Close()
+	}
+	return nil
+}
+
 // CreateFile 创建文件
 func CreateFile(path string) error {
 	// create parent dir if not exist
 	parentPath := filepath.Dir(path)
 	if _, err := os.Stat(parentPath); os.IsNotExist(err) {
-		os.MkdirAll(parentPath, 0744)
+		err2 := os.MkdirAll(parentPath, 0744)
+		if err2 != nil {
+			return err2
+		}
 	}
 
 	// create file if not exists
