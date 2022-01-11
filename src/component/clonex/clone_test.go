@@ -1,6 +1,8 @@
 package clonex
 
 import (
+	"encoding/json"
+	"github.com/seaxlab/gocore/src/lang/jsonx"
 	"log"
 	"reflect"
 	"testing"
@@ -12,38 +14,64 @@ type userModel struct {
 	Name   string    `json:"name"`
 	ID     int32     `json:"id"`
 	ID2    int16     `json:"id2"`
-	roles  []string  `json:"roles"`
-	roles2 []*string `json:"roles2"`
+	Roles  []string  `json:"roles"`
+	Roles2 []*string `json:"roles2"`
 }
 
 type userRoleModel struct {
 	Name   string    `json:"name"`
 	ID     int64     `json:"id"`
 	ID2    int8      `json:"id2"`
-	roles  []string  `json:"roles"`
-	roles2 []*string `json:"roles2"`
+	Roles  []string  `json:"roles"`
+	Roles2 []*string `json:"roles2"`
 }
 
 func TestDeepCopy(t *testing.T) {
+	str1 := "1"
+	str2 := "2"
+	user1 := &userModel{Name: "smith", ID: 10, Roles: []string{"1", "2"}, Roles2: []*string{&str1, &str2}}
+	user2 := &userModel{}
 
-	var (
-		str1 = "1"
-		str2 = "2"
-	)
+	log.Println(user1)
+	log.Println(user2)
 
-	userInstance := &userModel{Name: "smith", ID: 10, roles: []string{"1", "2"}, roles2: []*string{&str1, &str2}}
+	Clone(user2, user1)
+
+	log.Printf("after clone user1=%v\n", user1)
+	log.Printf("after clone user2=%v\n", user2)
+
+	log.Println("-----------")
 
 	userRoleInstance := &userRoleModel{}
 
-	log.Println(userInstance)
-	log.Println(userRoleInstance)
+	Clone(userRoleInstance, user1)
 
-	// 深拷贝
-	Clone(userRoleInstance, userInstance)
+	log.Printf("after clone user1=%v\n", user1)
+	log.Printf("after clone userRoleInstance=%v\n", user2)
+}
 
-	log.Println(userInstance)
-	log.Println(userRoleInstance)
+func TestDeepClone2(t *testing.T) {
+	str1 := "1"
+	str2 := "2"
+	user1 := &userModel{Name: "smith", ID: 10, Roles: []string{"1", "2"}, Roles2: []*string{&str1, &str2}}
+	user2 := &userModel{}
 
+	log.Println(user1)
+	log.Println(user2)
+
+	origJSON, _ := json.Marshal(user1)
+	log.Println(origJSON)
+
+	str, _ := jsonx.ToJsonString(user1)
+	log.Println(str)
+	obj, _ := jsonx.DecodeJsonString(str)
+	user3 := obj.(userModel)
+	log.Println(user3)
+
+	//json.Unmarshal(str, user2)
+
+	log.Println(user1)
+	log.Println(user2)
 }
 
 func TestDeepCopyLocal(t *testing.T) {
@@ -53,7 +81,7 @@ func TestDeepCopyLocal(t *testing.T) {
 		str2 = "2"
 	)
 
-	userInstance := &userModel{Name: "smith", ID: 10, roles: []string{"1", "2"}, roles2: []*string{&str1, &str2}}
+	userInstance := &userModel{Name: "smith", ID: 10, Roles: []string{"1", "2"}, Roles2: []*string{&str1, &str2}}
 
 	userRoleInstance := &userRoleModel{}
 
