@@ -11,13 +11,13 @@ func Now() time.Time {
 	return time.Now()
 }
 
-// format datetime
+// Format format datetime
 // YYYY-MM-DD hh:mm:ss //注意这里是YYYY大写的
 func Format(time time.Time, format string) string {
 	return fmtdate.Format(format, time)
 }
 
-// parse datetime
+// Parse parse datetime
 func Parse(datetimeStr string, format string) (time.Time, error) {
 	return fmtdate.Parse(format, datetimeStr)
 }

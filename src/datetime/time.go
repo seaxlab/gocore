@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-// timestamp
+// FormatTime timestamp
 func FormatTime(format ...string) string {
 	defaultFormat := "2006-01-02 15:04:05"
 	if len(format) > 0 {
@@ -53,7 +53,7 @@ func Timestamp(args ...string) int64 {
 	}
 	if l > 0 {
 		if reflect.TypeOf(args[0]).String() == "string" {
-			t, err := Strtotime(string(args[0]), "2006-01-02 15:04:05")
+			t, err := StringToTime(string(args[0]), "2006-01-02 15:04:05")
 			if err != nil {
 				log.Println("datetime.Timestamp error:", err)
 				return -1
@@ -76,7 +76,7 @@ func Nanosecond() int64 {
 	return time.Now().UnixNano()
 }
 
-// GMT TIME
+// Gmtime GMT TIME
 func Gmtime() string {
 	now := time.Now()
 	year, mon, day := now.UTC().Date()
@@ -93,8 +93,8 @@ func Localtime() string {
 	return fmt.Sprintf("%d-%d-%d %02d:%02d:%02d %s", year, mon, day, hour, min, sec, zone)
 }
 
-// String to time.Time
-func Strtotime(s string, args ...string) (time.Time, error) {
+// StringToTime String to time.Time
+func StringToTime(s string, args ...string) (time.Time, error) {
 	format := "2006-01-02 15:04:05"
 	if len(args) > 0 {
 		format = strings.Trim(args[0], " ")

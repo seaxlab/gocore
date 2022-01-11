@@ -11,28 +11,6 @@ import (
 	"strings"
 )
 
-// get hostname
-func GetHostname() string {
-	name, err := os.Hostname()
-	if err != nil {
-		panic(err)
-	}
-	return name
-}
-
-// IsWindows determines whether current OS is Windows.
-func IsWindows() bool {
-	return "windows" == runtime.GOOS
-}
-
-// Pwd gets the path of current working directory.
-func Pwd() string {
-	file, _ := exec.LookPath(os.Args[0])
-	pwd, _ := filepath.Abs(file)
-
-	return filepath.Dir(pwd)
-}
-
 // UserHome returns the home directory for the executing user.
 //
 // This uses an OS-specific method for discovering the home directory.
@@ -49,6 +27,33 @@ func UserHome() (string, error) {
 
 	// Unix-like system, so just assume Unix
 	return homeUnix()
+}
+
+// GetHostname get local hostname
+func GetHostname() string {
+	name, err := os.Hostname()
+	if err != nil {
+		panic(err)
+	}
+	return name
+}
+
+// IsWindows determines whether current OS is Windows.
+func IsWindows() bool {
+	return "windows" == runtime.GOOS
+}
+
+// GetWorkingDir get working dir
+func GetWorkingDir() (string, error) {
+	return os.Getwd()
+}
+
+// GetPwd gets the path of current working directory.
+func GetPwd() string {
+	file, _ := exec.LookPath(os.Args[0])
+	pwd, _ := filepath.Abs(file)
+
+	return filepath.Dir(pwd)
 }
 
 func homeUnix() (string, error) {

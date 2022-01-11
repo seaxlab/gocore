@@ -7,15 +7,15 @@ type YourT1 struct{}
 
 func (y YourT1) MethodBar() {
 	//do something
-	logger.Info("MethodBar")
+	//logger.Info("MethodBar")
 }
 
 type YourT2 struct{}
 
 func (y YourT2) MethodFoo(i int, oo string) {
 	//do something
-	logger.Info("MethodFoo")
-	logger.Info("i=", i, ",oo=", oo)
+	//logger.Info("MethodFoo")
+	//logger.Info("i=", i, ",oo=", oo)
 }
 func TestInvoke(t *testing.T) {
 
