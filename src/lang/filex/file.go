@@ -2,7 +2,7 @@ package filex
 
 import (
 	"fmt"
-	string2 "github.com/seaxlab/gocore/src/lang/stringx"
+	"github.com/seaxlab/gocore/src/lang/stringx"
 	"io"
 	"io/ioutil"
 	"log"
@@ -19,7 +19,7 @@ func RealPath(filePath string) string {
 	}
 	p = strings.Replace(p, "\\", "/", -1)
 	l := strings.LastIndex(p, "/") + 1
-	return string2.Substr(p, 0, l)
+	return stringx.Substr(p, 0, l)
 }
 
 // IsExists check path is exist
@@ -61,7 +61,7 @@ func IsBinary(content string) bool {
 	return false
 }
 
-// check path is file.
+//IsFile check path is file.
 func IsFile(path string) bool {
 	b, err := os.Stat(path)
 	if err != nil {
@@ -98,11 +98,14 @@ func IsImg(extension string) bool {
 
 // CreateFile 创建文件
 func CreateFile(path string) error {
-	// detect if file exists
-	var _, err = os.Stat(path)
+	// create parent dir if not exist
+	parentPath := filepath.Dir(path)
+	if _, err := os.Stat(parentPath); os.IsNotExist(err) {
+		os.MkdirAll(parentPath, 0744)
+	}
 
 	// create file if not exists
-	if os.IsNotExist(err) {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
 		var file, err = os.Create(path)
 		if err != nil {
 			return err
@@ -146,9 +149,8 @@ func CopyFile(source string, dest string) (err error) {
 
 	_, err = io.Copy(destFile, sourceFile)
 	if err == nil {
-		if sourceinfo, e := os.Stat(source); nil != e {
-			err = os.Chmod(dest, sourceinfo.Mode())
-
+		if sourceInfo, e := os.Stat(source); nil != e {
+			err = os.Chmod(dest, sourceInfo.Mode())
 			return
 		}
 	}
@@ -200,4 +202,31 @@ func CopyDir(source string, dest string) (err error) {
 func GetContent(filePath string) (string, error) {
 	res, err := ioutil.ReadFile(filePath)
 	return string(res), err
+}
+
+func WriteString(filePath string, content string) error {
+	return Write(filePath, []byte(content))
+}
+
+func Write(filePath string, data []byte) error {
+	return ioutil.WriteFile(filePath, data, 0644)
+}
+
+func AppendString(filePath string, content string) error {
+	return Append(filePath, []byte(content))
+}
+
+func Append(filePath string, data []byte) error {
+	// If the file doesn't exist, create it, or append to the file
+	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		return err
+	}
+	if _, err := f.Write(data); err != nil {
+		return err
+	}
+	if err := f.Close(); err != nil {
+		return err
+	}
+	return nil
 }
