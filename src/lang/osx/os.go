@@ -11,6 +11,27 @@ import (
 	"strings"
 )
 
+// SeaHome get sea home
+func SeaHome() (string, error) {
+	user, err := user.Current()
+	if err == nil {
+		return filepath.Join(user.HomeDir, "sea"), nil
+	}
+
+	if IsWindows() {
+		path, err := homeWindows()
+		if err == nil {
+			return filepath.Join(path, "sea"), nil
+		}
+	}
+
+	path, err := homeUnix()
+	if err == nil {
+		return filepath.Join(path, "sea"), nil
+	}
+	return "", errors.New("unable to get sea home, plz check")
+}
+
 // UserHome returns the home directory for the executing user.
 //
 // This uses an OS-specific method for discovering the home directory.
