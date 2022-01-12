@@ -16,3 +16,8 @@ func TestName(t *testing.T) {
 	log.Println(v1)
 	log.Println(v2)
 }
+
+func TestRatio(t *testing.T) {
+
+	log.Println(ratio(1, 6, 5))
+}

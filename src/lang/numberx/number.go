@@ -1,6 +1,9 @@
 package numberx
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 // spy 2020/5/20
 
@@ -52,3 +55,20 @@ func strToFloat64(value string) (float64, error) {
 // 'f' (-ddd.dddd，没有指数)
 // 'g' ('e':大指数，'f':其它情况)
 // 'G' ('E':大指数，'f':其它情况)
+
+// 这里会产生精度问题
+
+func ratio4(part, total int) (float64, error) {
+	return ratio(part, total, 4)
+}
+
+func ratio(part, total, scale int) (float64, error) {
+	if scale < 0 {
+		scale = 4
+	}
+	// such as %.2f
+	format := fmt.Sprintf("%s.%df", "%", scale)
+
+	// 这里会四舍五入
+	return strconv.ParseFloat(fmt.Sprintf(format, float64(part)/float64(total)), 64) // 保留[scale]位小数
+}
