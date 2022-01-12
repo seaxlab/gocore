@@ -9,6 +9,11 @@ import (
 
 // spy 2020/1/21
 
+func TestToStr(t *testing.T) {
+	assert.Equal(t, "1", ToStr(1))
+	assert.Equal(t, "a", ToStr("a"))
+}
+
 func TestTrimSpace(t *testing.T) {
 	fmt.Println(TrimSpaceString(" helloworld "))
 

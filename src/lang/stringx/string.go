@@ -4,10 +4,15 @@ package stringx
 
 import (
 	"bytes"
+	"fmt"
 	"strings"
 )
 
 var newlineBytes = []byte{'\n'}
+
+func ToStr(a interface{}) string {
+	return fmt.Sprint(a)
+}
 
 // IsEmpty returns true if the string is empty
 func IsEmpty(text string) bool {
