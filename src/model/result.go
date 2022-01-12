@@ -1,5 +1,7 @@
 package model
 
+import "fmt"
+
 // spy 2018-06-18
 
 /** API返回值统一模型 */
@@ -41,4 +43,11 @@ func NewFailResult(code, msg string) *Result {
 		Msg:     msg,
 		Data:    nil,
 	}
+}
+
+// -------------- method -------------------
+
+// SetMsgF set msg info
+func (r *Result) SetMsgF(format string, args ...interface{}) {
+	r.Msg = fmt.Sprintf(format, args...)
 }
