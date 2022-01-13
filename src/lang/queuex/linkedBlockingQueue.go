@@ -34,7 +34,7 @@ func (s LinkedListStore) Size() uint64 {
 	return s.capacity
 }
 
-// Creates an BlockingQueue backed by an LinkedList with the given (fixed) capacity
+// NewLinkedBlockingQueue Creates an BlockingQueue backed by an LinkedList with the given (fixed) capacity
 // returns an error if the capacity is less than 1
 func NewLinkedBlockingQueue(capacity uint64) (*BlockingQueue, error) {
 	if capacity < 1 {

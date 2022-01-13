@@ -8,6 +8,7 @@ type AbstractCollectionBase interface {
 }
 
 // All Queues must implement this interface
+
 type Interface interface {
 	AbstractCollectionBase
 

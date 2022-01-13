@@ -30,7 +30,7 @@ func (s ArrayStore) Size() uint64 {
 	return uint64(len(s.store))
 }
 
-// Creates an BlockingQueue backed by an Array with the given (fixed) capacity
+// NewArrayBlockingQueue Creates an BlockingQueue backed by an Array with the given (fixed) capacity
 // returns an error if the capacity is less than 1
 func NewArrayBlockingQueue(capacity uint64) (*BlockingQueue, error) {
 	if capacity < 1 {
