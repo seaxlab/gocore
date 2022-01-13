@@ -19,6 +19,12 @@ func GetFileName(filePath string) string {
 	return filepath.Base(filePath)
 }
 
+// SelfPath gets compiled executable file absolute path
+func SelfPath() string {
+	path, _ := filepath.Abs(os.Args[0])
+	return path
+}
+
 // RealPath get file real path
 func RealPath(filePath string) string {
 	p, err := filepath.Abs(filePath)
