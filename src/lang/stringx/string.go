@@ -77,17 +77,37 @@ func ToBytes(src string) []byte {
 	return []byte(src)
 }
 
-// Substr returns a string of length length from the start position
-func Substr(s string, start int, strlength ...int) string {
+// Substring 开始位置+结束位置
+func Substring(str string, start, end int) string {
+	if end > start {
+		return ""
+	}
+	charlist := []rune(str)
+	l := len(charlist)
+
+	if start > l {
+		start = l
+	}
+
+	if end > l {
+		end = l
+	}
+
+	return string(charlist[start:end])
+
+}
+
+// Substr 开始位置+字符个数
+func Substr(s string, start int, strLength int) string {
 	charlist := []rune(s)
 	l := len(charlist)
 	length := 0
 	end := 0
 
-	if len(strlength) == 0 {
+	if strLength <= 0 {
 		length = l
 	} else {
-		length = strlength[0]
+		length = strLength
 	}
 
 	if start < 0 {
