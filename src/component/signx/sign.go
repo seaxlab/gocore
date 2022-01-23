@@ -18,7 +18,8 @@ func Get(clientSecret string, p map[string]interface{}) string {
 			keys = append(keys, k)
 		}
 	}
-	sort.Strings(keys)
+	sort.Strings(keys) // asc
+
 	signStr := clientSecret
 	for _, key := range keys {
 		signStr += key + getString(p[key])
