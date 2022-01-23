@@ -121,7 +121,7 @@ type taskerr struct {
 // It's not a thread-safe structure.
 // Only nearest errors will be saved in ErrList
 type Task struct {
-	Taskname string
+	Name     string
 	Spec     *Schedule
 	SpecStr  string
 	DoFunc   TaskFunc
@@ -136,8 +136,8 @@ type Task struct {
 func NewTask(tname string, spec string, f TaskFunc) *Task {
 
 	task := &Task{
-		Taskname: tname,
-		DoFunc:   f,
+		Name:   tname,
+		DoFunc: f,
 		// Make configurable
 		ErrLimit: 100,
 		SpecStr:  spec,
