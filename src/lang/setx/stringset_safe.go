@@ -1,54 +1,54 @@
-package set
+package setx
 
 import (
 	"sync"
 )
 
-// SafeSet 线程安全的Set
-type SafeSet struct {
+// SafeStringSet 线程安全的Set
+type SafeStringSet struct {
 	sync.RWMutex
 	M map[string]bool
 }
 
-func NewSafeSet() *SafeSet {
-	return &SafeSet{
+func NewSafeStringSet() *SafeStringSet {
+	return &SafeStringSet{
 		M: make(map[string]bool),
 	}
 }
 
-func (this *SafeSet) Add(key string) {
+func (this *SafeStringSet) Add(key string) {
 	this.Lock()
 	this.M[key] = true
 	this.Unlock()
 }
 
-func (this *SafeSet) Remove(key string) {
+func (this *SafeStringSet) Remove(key string) {
 	this.Lock()
 	delete(this.M, key)
 	this.Unlock()
 }
 
-func (this *SafeSet) Clear() {
+func (this *SafeStringSet) Clear() {
 	this.Lock()
 	this.M = make(map[string]bool)
 	this.Unlock()
 }
 
-func (this *SafeSet) Contains(key string) bool {
+func (this *SafeStringSet) Contains(key string) bool {
 	this.RLock()
 	_, exists := this.M[key]
 	this.RUnlock()
 	return exists
 }
 
-func (this *SafeSet) Size() int {
+func (this *SafeStringSet) Size() int {
 	this.RLock()
 	len := len(this.M)
 	this.RUnlock()
 	return len
 }
 
-func (this *SafeSet) ToSlice() []string {
+func (this *SafeStringSet) ToSlice() []string {
 	this.RLock()
 	defer this.RUnlock()
 

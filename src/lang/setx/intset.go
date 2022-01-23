@@ -1,4 +1,4 @@
-package set
+package setx
 
 type IntSet struct {
 	M map[int]struct{}

@@ -1,4 +1,4 @@
-package set
+package setx
 
 type Int64Set struct {
 	M map[int64]struct{}

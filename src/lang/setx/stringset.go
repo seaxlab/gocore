@@ -1,4 +1,4 @@
-package set
+package setx
 
 type StringSet struct {
 	M map[string]struct{}

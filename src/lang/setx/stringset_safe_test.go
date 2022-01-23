@@ -1,4 +1,4 @@
-package set
+package setx
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 )
 
 func TestSafeSet(t *testing.T) {
-	ss := NewSafeSet()
+	ss := NewSafeStringSet()
 	// Add & Contains & Size
 	ss.Add("a1")
 	if !(ss.Contains("a1") && ss.Size() == 1) {
@@ -178,7 +178,7 @@ func BenchmarkSafeSetContainsConcurrent(b *testing.B) {
 func BenchmarkSafeSetSize(b *testing.B) {
 	b.StopTimer()
 	b.N = 1000000
-	ss := NewSafeSet()
+	ss := NewSafeStringSet()
 	for i := 0; i < b.N; i++ {
 		ss.Add(fmt.Sprintf("%d", i))
 	}

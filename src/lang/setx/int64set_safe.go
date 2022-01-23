@@ -1,4 +1,4 @@
-package set
+package setx
 
 import (
 	"fmt"
