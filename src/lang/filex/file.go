@@ -251,6 +251,15 @@ func GetContent(filePath string) (string, error) {
 	return string(res), err
 }
 
+func ReadString(filePath string) (string, error) {
+	res, err := ioutil.ReadFile(filePath)
+	return string(res), err
+}
+
+func Read(filePath string) ([]byte, error) {
+	return ioutil.ReadFile(filePath)
+}
+
 func WriteString(filePath string, content string) error {
 	return Write(filePath, []byte(content))
 }
