@@ -2,30 +2,40 @@ package mapx
 
 import (
 	"fmt"
+	"github.com/seaxlab/gocore/src/lang/filex"
+	"path/filepath"
 	"testing"
+	"time"
 )
 
-// spy 2020/1/21
+func TestMap(t *testing.T) {
+	filename, _ := filepath.Abs("../../../data/consumer_config.yml")
 
-func TestDeleteMapItem(t *testing.T) {
-	countryMap := make(map[string]string)
+	bstMap := NewBSTMap()
+	time1 := testMap(bstMap, filename)
+	fmt.Println("BST map :", time1)
 
-	countryMap["France"] = "巴黎"
-	countryMap["Italy"] = "罗马"
-	countryMap["Japan"] = "东京"
-	countryMap["India "] = "新德里"
+	linkedListMap := NewLinkedListMap()
+	time2 := testMap(linkedListMap, filename)
+	fmt.Println("linkedListMap set:", time2)
+}
 
-	/*使用键输出地图值 */
-	for country := range countryMap {
-		fmt.Println(country, "首都是", countryMap[country])
+func testMap(p IMap, filename string) time.Duration {
+	startTime := time.Now()
+
+	words, _ := filex.ReadString(filename)
+	fmt.Println("Total words:", len(words))
+
+	for _, word := range words {
+		if p.Contains(word) {
+			p.Set(word, p.Get(word).(int)+1)
+		} else {
+			p.Add(word, 1)
+		}
 	}
-	fmt.Println("----")
+	fmt.Println("Total different words: ", p.Size())
+	fmt.Println("Frequency of PRIDE:", p.Get("pride"))
+	fmt.Println("Frequency of PREJUDICE: ", p.Get("prejudice"))
 
-	delete(countryMap, "Japan")
-	//DeleteMapItem(countryMap,"Japan","India")
-
-	/*使用键输出地图值 */
-	for country := range countryMap {
-		fmt.Println(country, "首都是", countryMap[country])
-	}
+	return time.Now().Sub(startTime)
 }
