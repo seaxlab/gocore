@@ -59,7 +59,7 @@ func (em *EventManager) Listen(listeners ...Listener) {
 	}
 }
 
-// Publish a event
+// Publish an event
 func (em *EventManager) Publish(evt interface{}) {
 	em.lock.RLock()
 	defer em.lock.RUnlock()
