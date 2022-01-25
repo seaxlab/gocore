@@ -23,3 +23,10 @@ func TestAppend(t *testing.T) {
 
 	fmt.Println(myStringSlice)
 }
+
+func TestShuffle(t *testing.T) {
+	data := []int{5, 4, 6, 7, 9, 10}
+
+	Shuffle(data)
+	fmt.Println(data)
+}
