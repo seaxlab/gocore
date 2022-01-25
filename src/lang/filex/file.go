@@ -48,6 +48,18 @@ func IsExists(path string) bool {
 	return false
 }
 
+// LinkExists checks if link exists.
+func LinkExists(path string) (bool, error) {
+	_, err := os.Lstat(path)
+	if err == nil {
+		return true, nil
+	}
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
+}
+
 // GetFileSize get the length in bytes of file of the specified path.
 func GetFileSize(path string) (int64, error) {
 	fi, err := os.Stat(path)
