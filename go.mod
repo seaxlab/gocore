@@ -11,6 +11,5 @@ require (
 	github.com/metakeule/fmtdate v1.1.2
 	github.com/spaolacci/murmur3 v1.1.0
 	github.com/stretchr/testify v1.4.0
-	github.com/valyala/fasttemplate v1.1.0
 	gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405
 )

@@ -1,13 +1,9 @@
 package templatex
 
-import (
-	"github.com/valyala/fasttemplate"
-)
-
 // spy 2020/1/22
 
 func Format(template string, varMap map[string]interface{}) string {
-	t := fasttemplate.New(template, "{", "}")
+	t := New(template, "{", "}")
 	content := t.ExecuteString(varMap)
 
 	return content
