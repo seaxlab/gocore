@@ -3,6 +3,7 @@ package timex
 import (
 	"fmt"
 	"testing"
+	"time"
 )
 
 // spy 2020/1/22
@@ -17,4 +18,12 @@ func TestParse2(t *testing.T) {
 		fmt.Println(err)
 	}
 	fmt.Println(time)
+}
+
+func TestName(t *testing.T) {
+	now := time.Now().UTC()
+	begin := now.Add(-1 * time.Hour * time.Duration(1))
+	end := now.Add(time.Hour * time.Duration(1))
+	fmt.Println(begin.Format("2006-01-02T15:04:05.000Z"))
+	fmt.Println(end.Format("2006-01-02T15:04:05.000Z"))
 }

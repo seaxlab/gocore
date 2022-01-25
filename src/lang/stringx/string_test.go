@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"strings"
 	"testing"
 )
 
@@ -32,4 +33,9 @@ func TestTrimSpace(t *testing.T) {
 func TestJoin(t *testing.T) {
 	assert.Equal(t, JoinDefault("a", "b", "c"), "a:b:c")
 	assert.Equal(t, Join("-", "a", "b", "c"), "a-b-c")
+}
+
+func TestContains(t *testing.T) {
+	region := "qingdaopro"
+	fmt.Println(strings.Contains(region, "qingdao"))
 }
