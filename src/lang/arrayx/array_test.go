@@ -53,10 +53,19 @@ func MyMapFunc(v interface{}) interface{} {
 
 func TestMap(t *testing.T) {
 
-	var myArray = []interface{}{1, 2, 3, 4}
+	myArray := []interface{}{1, 2, 3, 4}
 	result := Map(myArray, MyMapFunc) // [3, 6, 9, 12]
 
 	fmt.Println(result)
+}
+
+func TestFilter(t *testing.T) {
+	myArray := []interface{}{1, 2, 3, 4}
+	result := Filter(myArray, func(v interface{}) bool {
+		return v.(int)%2 == 0
+	})
+
+	fmt.Println(result) // [2,4]
 }
 
 func TestCompact(t *testing.T) {

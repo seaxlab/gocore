@@ -69,6 +69,23 @@ func Map(arr []interface{}, mapFunc MapFunc) []interface{} {
 	return result
 }
 
+type FilterFunc func(interface{}) bool
+
+// Filter filter useful element
+func Filter(arr []interface{}, filterFunc FilterFunc) []interface{} {
+	if arr == nil || filterFunc == nil {
+		return arr
+	}
+
+	result := make([]interface{}, 0)
+	for _, v := range arr {
+		if filterFunc(v) {
+			result = append(result, v)
+		}
+	}
+	return result
+}
+
 // Compact 去除nil元素
 func Compact(arr []interface{}) []interface{} {
 	if arr == nil {
