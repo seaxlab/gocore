@@ -39,3 +39,11 @@ func TestContains(t *testing.T) {
 	region := "qingdaopro"
 	fmt.Println(strings.Contains(region, "qingdao"))
 }
+
+func TestSnakeToUpperCamel(t *testing.T) {
+	fmt.Println(SnakeToUpperCamel("hi_boy_c"))
+}
+
+func TestUpperCamelToSnake(t *testing.T) {
+	fmt.Println(UpperCamelToSnake("HelloGuysHowAreYou"))
+}

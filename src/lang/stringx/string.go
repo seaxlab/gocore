@@ -158,3 +158,27 @@ func Join(split string, args ...string) string {
 	}
 	return buffer.String()
 }
+
+// SnakeToUpperCamel 下划线命名方式转换为大写的驼峰
+func SnakeToUpperCamel(s string) string {
+	buf := bytes.NewBuffer(nil)
+	for _, v := range strings.Split(s, "_") {
+		if len(v) > 0 {
+			buf.WriteString(strings.ToUpper(v[:1]))
+			buf.WriteString(v[1:])
+		}
+	}
+	return buf.String()
+}
+
+// UpperCamelToSnake 大写的驼峰转换为下划线命名方式
+func UpperCamelToSnake(s string) string {
+	buf := bytes.NewBuffer(nil)
+	for i, v := range s {
+		if i > 0 && v >= 'A' && v <= 'Z' {
+			buf.WriteRune('_')
+		}
+		buf.WriteRune(v)
+	}
+	return strings.ToLower(buf.String())
+}
