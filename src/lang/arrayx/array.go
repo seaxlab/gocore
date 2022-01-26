@@ -16,6 +16,7 @@ func Shuffle(data []interface{}) {
 	rand.Shuffle(len(data), func(i, j int) { data[i], data[j] = data[j], data[i] })
 }
 
+// ShuffleNew 返回新的数组
 func ShuffleNew(data []interface{}) []interface{} {
 	// clone first
 	result := make([]interface{}, 0, len(data))
@@ -34,7 +35,7 @@ func ShuffleInt(data []int) {
 	rand.Shuffle(len(data), func(i, j int) { data[i], data[j] = data[j], data[i] })
 }
 
-// ShuffleIntNew an array
+// ShuffleIntNew 返回新的数组
 func ShuffleIntNew(data []int) []int {
 	// clone first
 	result := make([]int, 0, len(data))
