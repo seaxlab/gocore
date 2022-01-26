@@ -13,3 +13,10 @@ func TestJSON(t *testing.T) {
 	fmt.Println(json.Marshal(result))
 	fmt.Println(ToJsonString(result))
 }
+
+func TestToIndentString(t *testing.T) {
+	result := model.NewFailResult("1", "code is invalid")
+
+	str, _ := ToIndentString(result)
+	fmt.Println(str)
+}
