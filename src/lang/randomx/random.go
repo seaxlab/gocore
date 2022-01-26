@@ -28,6 +28,16 @@ func Alphabet(n int) string {
 	return string(b)
 }
 
+// Number1 随机生成1个数
+func Number1(start, end int) int {
+	//范围检查
+	if end < start || (end-start) < 1 {
+		return -1
+	}
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	return r.Intn((end - start)) + start
+}
+
 // Number 生成count个[start,end)结束的不重复的随机数
 func Number(start int, end int, count int) []int {
 	//范围检查
