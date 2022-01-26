@@ -11,9 +11,9 @@ import (
 
 // spy 2020/1/21
 
-func Get(clientSecret string, p map[string]interface{}) string {
+func Get(clientSecret string, params map[string]interface{}) string {
 	var keys []string
-	for k := range p {
+	for k := range params {
 		if k != "sign" && k != "access_token" {
 			keys = append(keys, k)
 		}
@@ -22,10 +22,9 @@ func Get(clientSecret string, p map[string]interface{}) string {
 
 	signStr := clientSecret
 	for _, key := range keys {
-		signStr += key + getString(p[key])
+		signStr += key + getString(params[key])
 	}
 	signStr += clientSecret
-	// log.Println(signStr, "=", md5Hash(signStr))
 	return md5Hash(signStr)
 }
 
