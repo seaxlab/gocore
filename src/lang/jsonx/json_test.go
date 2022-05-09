@@ -8,6 +8,13 @@ import (
 )
 
 // spy 2022/1/11
+func TestToJSONString(t *testing.T) {
+	paramMap := map[string]interface{}{}
+	paramMap["na"] = 1
+
+	fmt.Println(ToJsonString(paramMap))
+
+}
 func TestJSON(t *testing.T) {
 	result := model.NewFailResult("1", "a")
 	fmt.Println(json.Marshal(result))
